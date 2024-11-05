@@ -1,0 +1,73 @@
+html {
+  font-size: 62.5%;
+  // Fix for IE not calculating the font-size properly
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    font-size: calc(~'1em * 0.625');
+  }
+}
+
+// Apply smooth scrolling only if the page contains at least one valid anchor link.
+// A valid anchor link starts with "#" and has an ID after the "#". 
+// Exclude anchor links that end with "#", as they do not trigger a scroll-to-element functionality.
+html:has(a[href^="#"]):not(a[href$="#"]) {
+  scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  // Some users prefer reduced motion, respect their preference.
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.2;
+  color: #333;
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Box-sizing
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// Grid
+#wrapper {
+  background-repeat: no-repeat;
+  background-position: center top;
+  width: 100%;
+  margin: 0 0 -200px 0;
+}
+
+.region-area {
+  min-height: 560px;
+
+  &.campaign-page {
+    margin-top: 30px;
+  }
+}
+
+.page-box {
+  position: relative;
+}
+
+
+// ### GENEREL (Legacy)
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
