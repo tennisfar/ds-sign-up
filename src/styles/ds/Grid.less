@@ -1,0 +1,31 @@
+.grid-columns(@numberOfColumns, @name: ~"grid-columns-@{numberOfColumns}") {
+  @calculation: calc(~"max(var(--grid-min-width), min(calc(100vw - (var(--grid-margin)*2)), var(--grid-max-width))) * (@{numberOfColumns} / 14)");
+  --@{name}: ~"@{calculation}";
+}
+
+:root {
+  --grid-margin: 2rem;
+  --grid-gutter: 1.6rem;
+  --grid-min-width: calc(~"102.4rem - (var(--grid-margin)*2)");
+  --grid-max-width: 112rem;
+
+  .grid-columns(0.5, ~"grid-columns-half");
+  .grid-columns(1);
+  .grid-columns(2);
+  .grid-columns(3);
+  .grid-columns(4);
+  .grid-columns(5);
+  .grid-columns(6);
+  .grid-columns(7);
+  .grid-columns(8);
+  .grid-columns(9);
+  .grid-columns(10);
+  .grid-columns(11);
+  .grid-columns(12);
+  .grid-columns(14);
+}
+
+.page-area {
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
