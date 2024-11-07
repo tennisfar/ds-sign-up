@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --navigation-compliance-bar-height: 3.6rem;
+    --header-height: calc(var(--navigation-compliance-bar-height, 0rem) + var(--navigation-main-menu-height, 0rem) + var(--navigation-sub-menu-height, 0rem));
+}
+
+body {
+    padding-top: var(--header-height, 0);
+    background: #F2F2F2;
+}
+
+.responsible-gaming__top {
+    align-items: center;
+    background: #fff;
+    border-radius: 0 0 2rem 2rem;
+    color: #000;
+    display: grid;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    grid-template-columns: auto 1fr auto;
+    height: var(--navigation-compliance-bar-height, 0);
+    left: 0;
+    padding: 0.1rem 0.3rem 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 110;
+}
