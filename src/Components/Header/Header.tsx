@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export const Header = ({title, isDlo, text}: HeaderProps) => {
     return (
-        <div className={'flex flex-col gap-7 max-w-[40rem]'}>
+        <div className={'flex flex-col gap-8 max-w-[40rem]'}>
 
             <div className={'flex flex-col gap-24'}>
                 <AccountLogo isDlo={isDlo}/>
