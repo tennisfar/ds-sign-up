@@ -2,7 +2,11 @@ import { Link } from '@tanstack/react-router';
 import { useShowCancelContext } from '../../assets/Contexts/ShowCancelContext.tsx';
 
 export const Jiras = () => {
-  const { showCancel } = useShowCancelContext();
+  const { showCancel, setShowCancel } = useShowCancelContext();
+
+  const handleCancel = () => {
+    setShowCancel(!showCancel);
+  };
 
   return (
     <ul className="p-10 text-[1.4rem] mt-80 *:p-2">
@@ -12,7 +16,9 @@ export const Jiras = () => {
         </Link>
       </li>
       <li>
-        <Link className={showCancel ? 'font-bold' : ''}>IU-20305: Afbryd oprettelse</Link>
+        <Link className={showCancel ? 'font-bold' : ''} onClick={handleCancel}>
+          IU-20305: Afbryd oprettelse
+        </Link>
       </li>
       <li>
         <Link to="/kontaktinformationer" className="[&.active]:font-bold">
