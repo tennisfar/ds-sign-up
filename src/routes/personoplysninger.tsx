@@ -1,26 +1,26 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Container } from '../Components/Container/Container.tsx'
-import { Header } from '../Components/Header/Header.tsx'
-import { useEffect, useState } from 'react'
-import { CancelSignUp } from '../Components/CancelSignUp/CancelSignUp.tsx'
-import { useStepContext } from '../assets/Contexts/StepContext.tsx'
+import { createFileRoute } from '@tanstack/react-router';
+import { Container } from '../Components/Container/Container.tsx';
+import { Header } from '../Components/Header/Header.tsx';
+import { useEffect, useState } from 'react';
+import { CancelSignUp } from '../Components/CancelSignUp/CancelSignUp.tsx';
+import { useStepContext } from '../assets/Contexts/StepContext.tsx';
 
 export const Route = createFileRoute('/personoplysninger')({
   component: PersonalInfo,
-})
+});
 
 function PersonalInfo() {
-  const { setStep } = useStepContext()
+  const { setStep } = useStepContext();
 
   useEffect(() => {
-    setStep(2)
-  }, [])
+    setStep(2);
+  }, [setStep]);
 
-  const [showCancel, setShowCancel] = useState(false)
+  const [showCancel, setShowCancel] = useState(false);
 
   const handleCancel = () => {
-    setShowCancel(!showCancel)
-  }
+    setShowCancel(!showCancel);
+  };
 
   return (
     <>
@@ -42,5 +42,5 @@ function PersonalInfo() {
         </>
       )}
     </>
-  )
+  );
 }

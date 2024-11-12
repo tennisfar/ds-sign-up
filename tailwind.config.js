@@ -114,10 +114,7 @@ const sizes = {
 };
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       ds: ['DanskeSpil', 'sans-serif'],
@@ -146,4 +143,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

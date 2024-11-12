@@ -1,26 +1,24 @@
-import {AccountLogo} from '../AccountLogo/AccountLogo.tsx';
-import {RichText} from "../RichText/RichText.tsx";
-import {Title} from "../Title/Title.tsx";
+import { AccountLogo } from '../AccountLogo/AccountLogo.tsx';
+import { RichText } from '../RichText/RichText.tsx';
+import { Title } from '../Title/Title.tsx';
 
 type HeaderProps = {
-    isDlo?: boolean;
-    title: string;
-    text?: any;
+  isDlo?: boolean;
+  title: string;
+  text?: any;
 };
 
-export const Header = ({title, isDlo, text}: HeaderProps) => {
-    return (
-        <div className={'flex flex-col gap-8 max-w-[40rem]'}>
+export const Header = ({ title, isDlo, text }: HeaderProps) => {
+  return (
+    <div className={'flex flex-col gap-8 max-w-[40rem]'}>
+      <div className={'flex flex-col gap-24'}>
+        <AccountLogo isDlo={isDlo} />
+        <Title>{title}</Title>
+      </div>
 
-            <div className={'flex flex-col gap-24'}>
-                <AccountLogo isDlo={isDlo}/>
-                <Title>{title}</Title>
-            </div>
-
-            <div className={'text-center'}>
-                <RichText>{text}</RichText>
-            </div>
-
-        </div>
-    );
-}
+      <div className={'text-center'}>
+        <RichText>{text}</RichText>
+      </div>
+    </div>
+  );
+};
