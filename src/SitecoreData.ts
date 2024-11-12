@@ -58,5 +58,12 @@ export const sitecoreData = {
   markedsfoering: {
     title: 'Vil du høre mere om vores gode tilbud, kampagner og nyheder?',
     text: 'Det kan f.eks. være når vi kører indbetalingsbonusser, gratis chancer eller nye spillerautomater.',
+    ctaLabelAccept: 'Ja tak',
+    ctaLabelDecline: 'Nej tak',
+  },
+
+  bekraeft: {
+    title: 'Bekræft med MitID',
+    text: 'Din konto er nu oprettet og næsten klar, men før du kan komme i gang med at spille, skal dine oplysninger valideres med dit MitID.',
   },
 };

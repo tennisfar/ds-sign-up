@@ -17,6 +17,7 @@ import { Route as OpretLoginImport } from './routes/opret-login'
 import { Route as MarkedsfoeringImport } from './routes/markedsfoering'
 import { Route as KontaktinformationerImport } from './routes/kontaktinformationer'
 import { Route as IndbetalingsgraenseImport } from './routes/indbetalingsgraense'
+import { Route as BekraeftImport } from './routes/bekraeft'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -57,6 +58,12 @@ const IndbetalingsgraenseRoute = IndbetalingsgraenseImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BekraeftRoute = BekraeftImport.update({
+  id: '/bekraeft',
+  path: '/bekraeft',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -72,6 +79,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/bekraeft': {
+      id: '/bekraeft'
+      path: '/bekraeft'
+      fullPath: '/bekraeft'
+      preLoaderRoute: typeof BekraeftImport
       parentRoute: typeof rootRoute
     }
     '/indbetalingsgraense': {
@@ -123,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bekraeft': typeof BekraeftRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/markedsfoering': typeof MarkedsfoeringRoute
@@ -133,6 +148,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bekraeft': typeof BekraeftRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/markedsfoering': typeof MarkedsfoeringRoute
@@ -144,6 +160,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/bekraeft': typeof BekraeftRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/markedsfoering': typeof MarkedsfoeringRoute
@@ -156,6 +173,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/bekraeft'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
     | '/markedsfoering'
@@ -165,6 +183,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/bekraeft'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
     | '/markedsfoering'
@@ -174,6 +193,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/bekraeft'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
     | '/markedsfoering'
@@ -185,6 +205,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BekraeftRoute: typeof BekraeftRoute
   IndbetalingsgraenseRoute: typeof IndbetalingsgraenseRoute
   KontaktinformationerRoute: typeof KontaktinformationerRoute
   MarkedsfoeringRoute: typeof MarkedsfoeringRoute
@@ -195,6 +216,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BekraeftRoute: BekraeftRoute,
   IndbetalingsgraenseRoute: IndbetalingsgraenseRoute,
   KontaktinformationerRoute: KontaktinformationerRoute,
   MarkedsfoeringRoute: MarkedsfoeringRoute,
@@ -214,6 +236,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/bekraeft",
         "/indbetalingsgraense",
         "/kontaktinformationer",
         "/markedsfoering",
@@ -224,6 +247,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/bekraeft": {
+      "filePath": "bekraeft.tsx"
     },
     "/indbetalingsgraense": {
       "filePath": "indbetalingsgraense.tsx"

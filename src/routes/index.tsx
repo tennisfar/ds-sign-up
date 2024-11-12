@@ -32,7 +32,7 @@ function Index() {
       <Text>{text}</Text>
 
       <div className={'mt-40 mb-20'}>
-        <CtaButton isPrimary={true} to={'kontaktinformationer'}>
+        <CtaButton isPrimary={true} to={'/kontaktinformationer'}>
           {getStartedLabel}
         </CtaButton>
       </div>

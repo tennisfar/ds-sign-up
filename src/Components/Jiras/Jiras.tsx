@@ -50,6 +50,11 @@ export const Jiras = () => {
           IU-20312: Markedsføring
         </Link>
       </li>
+      <li>
+        <Link to="/bekraeft" className="[&.active]:font-bold">
+          IU-20314: Bekræft med MitID
+        </Link>
+      </li>
     </ul>
   );
 };
