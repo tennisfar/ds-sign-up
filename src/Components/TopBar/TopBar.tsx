@@ -3,14 +3,7 @@ import CloseIcon from '../../assets/close.svg';
 import { useStepContext } from '../../assets/Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../../assets/Contexts/ShowCancelContext.tsx';
 
-type TopBarProps = {
-  steps?: number;
-  handleCancel?: any;
-  hideBack?: boolean;
-  hideCancel?: boolean;
-};
-
-export const TopBar = ({ hideBack = false }: TopBarProps) => {
+export const TopBar = () => {
   const { step, steps } = useStepContext();
   const { showCancel, setShowCancel } = useShowCancelContext();
 
@@ -20,14 +13,14 @@ export const TopBar = ({ hideBack = false }: TopBarProps) => {
 
   return (
     <div className={'relative max-w-[68rem] mt-70 mx-auto flex items-center h-40 mb-12 text-[1.4rem] justify-between'}>
-      {!hideBack && (
+      {step && (
         <div className={'flex gap-4 absolute left-0 cursor-pointer hover:underline'} onClick={handleCancel}>
           {BackIcon && <img src={BackIcon} alt={'Luk'} />}
           Tilbage
         </div>
       )}
 
-      {step && steps && (
+      {step && !showCancel && (
         <div className={'absolute left-0 text-center w-full'}>
           Trin {step} af {steps}
         </div>

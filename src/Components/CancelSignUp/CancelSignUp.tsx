@@ -11,7 +11,7 @@ export const CancelSignUp = () => {
   }
 
   const handleCancel = () => {
-    setShowCancel(false);
+    setShowCancel(!showCancel);
   };
 
   return (
