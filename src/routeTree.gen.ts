@@ -11,10 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PersonoplysningerImport } from './routes/personoplysninger'
 import { Route as KontaktinformationerImport } from './routes/kontaktinformationer'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const PersonoplysningerRoute = PersonoplysningerImport.update({
+  id: '/personoplysninger',
+  path: '/personoplysninger',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const KontaktinformationerRoute = KontaktinformationerImport.update({
   id: '/kontaktinformationer',
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktinformationerImport
       parentRoute: typeof rootRoute
     }
+    '/personoplysninger': {
+      id: '/personoplysninger'
+      path: '/personoplysninger'
+      fullPath: '/personoplysninger'
+      preLoaderRoute: typeof PersonoplysningerImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/personoplysninger': typeof PersonoplysningerRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/personoplysninger': typeof PersonoplysningerRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/personoplysninger': typeof PersonoplysningerRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontaktinformationer'
+  fullPaths: '/' | '/kontaktinformationer' | '/personoplysninger'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontaktinformationer'
-  id: '__root__' | '/' | '/kontaktinformationer'
+  to: '/' | '/kontaktinformationer' | '/personoplysninger'
+  id: '__root__' | '/' | '/kontaktinformationer' | '/personoplysninger'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KontaktinformationerRoute: typeof KontaktinformationerRoute
+  PersonoplysningerRoute: typeof PersonoplysningerRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KontaktinformationerRoute: KontaktinformationerRoute,
+  PersonoplysningerRoute: PersonoplysningerRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/kontaktinformationer"
+        "/kontaktinformationer",
+        "/personoplysninger"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/kontaktinformationer": {
       "filePath": "kontaktinformationer.tsx"
+    },
+    "/personoplysninger": {
+      "filePath": "personoplysninger.tsx"
     }
   }
 }

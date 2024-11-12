@@ -42,7 +42,7 @@ function ContactInfo() {
                         {/* Max width 392px is only for developing, to make output look exactly like Figma. Should be removed. */}
                         <div className={'max-w-[360px]'}>
                             <Header title={'Kontaktinformationer'}
-                                    text={"Indtast venligst din e-mailadresse og telefonnummer. "}/>
+                                    text={"Indtast venligst din e-mailadresse og telefonnummer."}/>
                         </div>
 
                     </Container>

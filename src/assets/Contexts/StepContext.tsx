@@ -18,7 +18,7 @@ export const StepContext = createContext<StepContext | null>(null);
 
 export default function StepContextProvider({children}: StepContextProviderProps) {
     const [step, setStep] = useState<Step>(null);
-    const [steps, setSteps] = useState<Steps>(null);
+    const [steps, setSteps] = useState<Steps>(7);
 
     return (
         <StepContext.Provider

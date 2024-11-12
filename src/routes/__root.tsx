@@ -24,6 +24,11 @@ function RootComponent() {
                         IU-20306: Kontaktinformationer
                     </Link>
                 </li>
+                <li>
+                    <Link to="/personoplysninger" className="[&.active]:font-bold">
+                        IU-20308: Personoplysninger
+                    </Link>
+                </li>
             </ul>
 
             <TanStackRouterDevtools/>
