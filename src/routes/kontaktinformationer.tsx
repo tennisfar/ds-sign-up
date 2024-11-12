@@ -24,10 +24,7 @@ function ContactInfo() {
 
   return (
     <>
-      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-      <div className={'max-w-[360px]'}>
-        <Header title={'Kontaktinformationer'} text={'Indtast venligst din e-mailadresse og telefonnummer.'} />
-      </div>
+      <Header title={'Kontaktinformationer'} text={'Indtast venligst din e-mailadresse og telefonnummer.'} />
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'/personoplysninger'}>

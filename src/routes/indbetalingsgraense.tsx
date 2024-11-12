@@ -23,15 +23,12 @@ function CreateLogin() {
 
   return (
     <>
-      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-      <div className={'max-w-[392px]'}>
-        <Header
-          title={'Sæt din indbetalingsgrænse'}
-          text={
-            'Med en indbetalingsgrænse sikrer du, at du ikke indbetaler flere penge til din spilkonto, end du på forhånd har besluttet dig for.'
-          }
-        />
-      </div>
+      <Header
+        title={'Sæt din indbetalingsgrænse'}
+        text={
+          'Med en indbetalingsgrænse sikrer du, at du ikke indbetaler flere penge til din spilkonto, end du på forhånd har besluttet dig for.'
+        }
+      />
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'/spil-med-omtanke'}>

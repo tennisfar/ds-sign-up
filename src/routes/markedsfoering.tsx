@@ -22,13 +22,11 @@ function PlayResponsibly() {
 
   return (
     <>
-      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-      <div className={'max-w-[392px]'}>
-        <Header
-          title={'Vil du høre mere om vores gode tilbud, kampagner og nyheder?'}
-          text={'Det kan f.eks. være når vi kører indbetalingsbonusser, gratis chancer eller nye spillerautomater.'}
-        />
-      </div>
+      <Header
+        title={'Vil du høre mere om vores gode tilbud, kampagner og nyheder?'}
+        text={'Det kan f.eks. være når vi kører indbetalingsbonusser, gratis chancer eller nye spillerautomater.'}
+        wide={true}
+      />
     </>
   );
 }

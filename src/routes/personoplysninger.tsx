@@ -23,10 +23,7 @@ function PersonalInfo() {
 
   return (
     <>
-      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-      <div className={'max-w-[392px]'}>
-        <Header title={'Personoplysninger'} text={'Vi skal vide lidt mere om dig for at kunne oprette en Blå Konto.'} />
-      </div>
+      <Header title={'Personoplysninger'} text={'Vi skal vide lidt mere om dig for at kunne oprette en Blå Konto.'} />
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'/opret-login'}>

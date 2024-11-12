@@ -1,7 +1,12 @@
 type TitleProps = {
   children: string;
+  wide?: boolean;
 };
 
-export const Title = ({ children }: TitleProps) => {
-  return <div className={'font-ds font-black text-center text-32 mx-auto [_text-wrap:balance]'}>{children}</div>;
+export const Title = ({ children, wide }: TitleProps) => {
+  return (
+    <div className={`font-ds font-black text-center text-32 mx-auto ${wide ? 'max-w-[56rem]' : 'max-w-[40rem]'}`}>
+      {children}
+    </div>
+  );
 };

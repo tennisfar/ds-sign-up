@@ -7,18 +7,19 @@ type HeaderProps = {
   title: string;
   text?: string;
   alignText?: 'left' | 'center';
+  wide?: boolean;
 };
 
-export const Header = ({ title, isDlo, text, alignText = 'center' }: HeaderProps) => {
+export const Header = ({ title, isDlo, text, wide, alignText = 'center' }: HeaderProps) => {
   return (
-    <div className={'flex flex-col gap-8 max-w-[40rem]'}>
+    <div className={'flex flex-col gap-8'}>
       <div className={'flex flex-col gap-24'}>
         <AccountLogo isDlo={isDlo} />
-        <Title>{title}</Title>
+        <Title wide={wide}>{title}</Title>
       </div>
 
       <div className={`text-${alignText}`}>
-        <RichText>{text}</RichText>
+        <RichText wide={wide}>{text}</RichText>
       </div>
     </div>
   );
