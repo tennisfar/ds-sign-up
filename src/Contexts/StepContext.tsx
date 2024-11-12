@@ -4,7 +4,7 @@ type StepContextProviderProps = {
   children: React.ReactNode;
 };
 
-type Step = 1 | 2 | 3 | null;
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | null;
 type Steps = number | null;
 
 type StepContext = {

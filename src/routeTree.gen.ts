@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as PersonoplysningerImport } from './routes/personoplysninger'
 import { Route as OpretLoginImport } from './routes/opret-login'
 import { Route as KontaktinformationerImport } from './routes/kontaktinformationer'
+import { Route as IndbetalingsgraenseImport } from './routes/indbetalingsgraense'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -36,6 +37,12 @@ const KontaktinformationerRoute = KontaktinformationerImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const IndbetalingsgraenseRoute = IndbetalingsgraenseImport.update({
+  id: '/indbetalingsgraense',
+  path: '/indbetalingsgraense',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -51,6 +58,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/indbetalingsgraense': {
+      id: '/indbetalingsgraense'
+      path: '/indbetalingsgraense'
+      fullPath: '/indbetalingsgraense'
+      preLoaderRoute: typeof IndbetalingsgraenseImport
       parentRoute: typeof rootRoute
     }
     '/kontaktinformationer': {
@@ -81,6 +95,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
@@ -88,6 +103,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
@@ -96,6 +112,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
@@ -105,14 +122,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/indbetalingsgraense'
     | '/kontaktinformationer'
     | '/opret-login'
     | '/personoplysninger'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontaktinformationer' | '/opret-login' | '/personoplysninger'
+  to:
+    | '/'
+    | '/indbetalingsgraense'
+    | '/kontaktinformationer'
+    | '/opret-login'
+    | '/personoplysninger'
   id:
     | '__root__'
     | '/'
+    | '/indbetalingsgraense'
     | '/kontaktinformationer'
     | '/opret-login'
     | '/personoplysninger'
@@ -121,6 +145,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IndbetalingsgraenseRoute: typeof IndbetalingsgraenseRoute
   KontaktinformationerRoute: typeof KontaktinformationerRoute
   OpretLoginRoute: typeof OpretLoginRoute
   PersonoplysningerRoute: typeof PersonoplysningerRoute
@@ -128,6 +153,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IndbetalingsgraenseRoute: IndbetalingsgraenseRoute,
   KontaktinformationerRoute: KontaktinformationerRoute,
   OpretLoginRoute: OpretLoginRoute,
   PersonoplysningerRoute: PersonoplysningerRoute,
@@ -144,6 +170,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/indbetalingsgraense",
         "/kontaktinformationer",
         "/opret-login",
         "/personoplysninger"
@@ -151,6 +178,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/indbetalingsgraense": {
+      "filePath": "indbetalingsgraense.tsx"
     },
     "/kontaktinformationer": {
       "filePath": "kontaktinformationer.tsx"

@@ -35,6 +35,11 @@ export const Jiras = () => {
           IU-20309: Opret login
         </Link>
       </li>
+      <li>
+        <Link to="/indbetalingsgraense" className="[&.active]:font-bold">
+          IU-20310: Indbetalingsgrænse
+        </Link>
+      </li>
     </ul>
   );
 };
