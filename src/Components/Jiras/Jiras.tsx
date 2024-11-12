@@ -45,6 +45,11 @@ export const Jiras = () => {
           IU-20311: Spil med omtanke
         </Link>
       </li>
+      <li>
+        <Link to="/markedsfoering" className="[&.active]:font-bold">
+          IU-20312: Markedsføring
+        </Link>
+      </li>
     </ul>
   );
 };

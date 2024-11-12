@@ -3,6 +3,7 @@ import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
+import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 
 export const Route = createFileRoute('/spil-med-omtanke')({
   component: PlayResponsibly,
@@ -37,6 +38,12 @@ function PlayResponsibly() {
           }
           alignText={'left'}
         />
+      </div>
+
+      <div className={'mt-40 mb-20'}>
+        <CtaButton isPrimary={true} to={'/markedsfoering'}>
+          Accepter og fortsæt
+        </CtaButton>
       </div>
     </>
   );

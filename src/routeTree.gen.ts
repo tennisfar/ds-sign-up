@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as SpilMedOmtankeImport } from './routes/spil-med-omtanke'
 import { Route as PersonoplysningerImport } from './routes/personoplysninger'
 import { Route as OpretLoginImport } from './routes/opret-login'
+import { Route as MarkedsfoeringImport } from './routes/markedsfoering'
 import { Route as KontaktinformationerImport } from './routes/kontaktinformationer'
 import { Route as IndbetalingsgraenseImport } from './routes/indbetalingsgraense'
 import { Route as IndexImport } from './routes/index'
@@ -35,6 +36,12 @@ const PersonoplysningerRoute = PersonoplysningerImport.update({
 const OpretLoginRoute = OpretLoginImport.update({
   id: '/opret-login',
   path: '/opret-login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MarkedsfoeringRoute = MarkedsfoeringImport.update({
+  id: '/markedsfoering',
+  path: '/markedsfoering',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktinformationerImport
       parentRoute: typeof rootRoute
     }
+    '/markedsfoering': {
+      id: '/markedsfoering'
+      path: '/markedsfoering'
+      fullPath: '/markedsfoering'
+      preLoaderRoute: typeof MarkedsfoeringImport
+      parentRoute: typeof rootRoute
+    }
     '/opret-login': {
       id: '/opret-login'
       path: '/opret-login'
@@ -111,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/markedsfoering': typeof MarkedsfoeringRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
   '/spil-med-omtanke': typeof SpilMedOmtankeRoute
@@ -120,6 +135,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/markedsfoering': typeof MarkedsfoeringRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
   '/spil-med-omtanke': typeof SpilMedOmtankeRoute
@@ -130,6 +146,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/indbetalingsgraense': typeof IndbetalingsgraenseRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/markedsfoering': typeof MarkedsfoeringRoute
   '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
   '/spil-med-omtanke': typeof SpilMedOmtankeRoute
@@ -141,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
+    | '/markedsfoering'
     | '/opret-login'
     | '/personoplysninger'
     | '/spil-med-omtanke'
@@ -149,6 +167,7 @@ export interface FileRouteTypes {
     | '/'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
+    | '/markedsfoering'
     | '/opret-login'
     | '/personoplysninger'
     | '/spil-med-omtanke'
@@ -157,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/indbetalingsgraense'
     | '/kontaktinformationer'
+    | '/markedsfoering'
     | '/opret-login'
     | '/personoplysninger'
     | '/spil-med-omtanke'
@@ -167,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IndbetalingsgraenseRoute: typeof IndbetalingsgraenseRoute
   KontaktinformationerRoute: typeof KontaktinformationerRoute
+  MarkedsfoeringRoute: typeof MarkedsfoeringRoute
   OpretLoginRoute: typeof OpretLoginRoute
   PersonoplysningerRoute: typeof PersonoplysningerRoute
   SpilMedOmtankeRoute: typeof SpilMedOmtankeRoute
@@ -176,6 +197,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IndbetalingsgraenseRoute: IndbetalingsgraenseRoute,
   KontaktinformationerRoute: KontaktinformationerRoute,
+  MarkedsfoeringRoute: MarkedsfoeringRoute,
   OpretLoginRoute: OpretLoginRoute,
   PersonoplysningerRoute: PersonoplysningerRoute,
   SpilMedOmtankeRoute: SpilMedOmtankeRoute,
@@ -194,6 +216,7 @@ export const routeTree = rootRoute
         "/",
         "/indbetalingsgraense",
         "/kontaktinformationer",
+        "/markedsfoering",
         "/opret-login",
         "/personoplysninger",
         "/spil-med-omtanke"
@@ -207,6 +230,9 @@ export const routeTree = rootRoute
     },
     "/kontaktinformationer": {
       "filePath": "kontaktinformationer.tsx"
+    },
+    "/markedsfoering": {
+      "filePath": "markedsfoering.tsx"
     },
     "/opret-login": {
       "filePath": "opret-login.tsx"
