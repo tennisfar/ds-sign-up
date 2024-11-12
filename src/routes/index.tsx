@@ -1,11 +1,11 @@
 import {createFileRoute} from '@tanstack/react-router'
 import {Header} from '../Components/Header/Header.tsx'
 import {Container} from '../Components/Container/Container.tsx'
-import {TopBar} from '../Components/TopBar/TopBar.tsx'
 import {CtaButton} from '../Components/Cta/CtaButton.tsx'
 import {RichText} from '../Components/RichText/RichText.tsx'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CancelSignUp} from '../Components/CancelSignUp/CancelSignUp.tsx'
+import {useStepContext} from "../assets/Contexts/StepContext.tsx";
 
 export const Route = createFileRoute('/')({
     component: Index,
@@ -24,6 +24,13 @@ const data = {
 }
 
 function Index() {
+    const {setStep, setSteps} = useStepContext();
+
+    useEffect(() => {
+        setStep(null);
+        setSteps(null);
+    }, []);
+    
     const [showCancel, setShowCancel] = useState(false);
 
     const handleCancel = () => {
@@ -39,7 +46,7 @@ function Index() {
                 {!showCancel && (
                     <>
 
-                        <TopBar handleCancel={handleCancel} hideBack={true}/>
+                        {/*<TopBar handleCancel={handleCancel} hideBack={true}/>*/}
 
                         <Container>
                             <Header title={data.title} isDlo={data.isDlo} text={data.text}/>

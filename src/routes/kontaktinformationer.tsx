@@ -1,15 +1,23 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {TopBar} from "../Components/TopBar/TopBar.tsx";
 import {Container} from "../Components/Container/Container.tsx";
 import {Header} from "../Components/Header/Header.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {CancelSignUp} from "../Components/CancelSignUp/CancelSignUp.tsx";
+import {useStepContext} from "../assets/Contexts/StepContext.tsx";
 
 export const Route = createFileRoute('/kontaktinformationer')({
-    component: Kontaktinformationer,
+    component: ContactInfo,
 })
 
-function Kontaktinformationer() {
+function ContactInfo() {
+    const {setStep, setSteps} = useStepContext();
+    
+    useEffect(() => {
+        setStep(1);
+        setSteps(7);
+    }, []);
+    
+    
     const [showCancel, setShowCancel] = useState(false);
 
     const handleCancel = () => {
@@ -27,7 +35,7 @@ function Kontaktinformationer() {
             {!showCancel && (
 
                 <>
-                    <TopBar currentStep={1} steps={7} handleCancel={handleCancel}/>
+                    {/*<TopBar handleCancel={handleCancel}/>*/}
 
                     <Container>
 

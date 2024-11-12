@@ -1,15 +1,17 @@
 import BackIcon from '../../assets/back.svg';
 import CloseIcon from '../../assets/close.svg';
+import {useStepContext} from "../../assets/Contexts/StepContext.tsx";
 
 type TopBarProps = {
-    currentStep?: number;
     steps?: number;
     handleCancel?: any;
     hideBack?: boolean;
     hideCancel?: boolean;
 };
 
-export const TopBar = ({currentStep, steps, handleCancel, hideBack = false, hideCancel = false}: TopBarProps) => {
+export const TopBar = ({handleCancel, hideBack = false, hideCancel = false}: TopBarProps) => {
+    const {step, steps} = useStepContext();
+    
     return (
         <div
             className={'relative max-w-[68rem] mt-70 mx-auto flex items-center h-40 mb-12 text-[1.4rem] justify-between'}>
@@ -21,8 +23,8 @@ export const TopBar = ({currentStep, steps, handleCancel, hideBack = false, hide
                 </div>
             )}
 
-            {currentStep && steps &&
-              <div className={'absolute left-0 text-center w-full'}>Trin {currentStep} af {steps}</div>}
+            {step && steps &&
+              <div className={'absolute left-0 text-center w-full'}>Trin {step} af {steps}</div>}
 
             {handleCancel && !hideCancel && (
                 <div className={'flex gap-4 absolute right-0 cursor-pointer hover:underline'} onClick={handleCancel}>
