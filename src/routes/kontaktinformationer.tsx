@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Container } from '../Components/Container/Container.tsx';
 import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../assets/Contexts/StepContext.tsx';
@@ -18,18 +17,16 @@ function ContactInfo() {
     setSteps(7);
   }, [setStep, setSteps]);
 
+  if (showCancel) {
+    return null;
+  }
+
   return (
     <>
-      {!showCancel && (
-        <>
-          <Container>
-            {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-            <div className={'max-w-[360px]'}>
-              <Header title={'Kontaktinformationer'} text={'Indtast venligst din e-mailadresse og telefonnummer.'} />
-            </div>
-          </Container>
-        </>
-      )}
+      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
+      <div className={'max-w-[360px]'}>
+        <Header title={'Kontaktinformationer'} text={'Indtast venligst din e-mailadresse og telefonnummer.'} />
+      </div>
     </>
   );
 }

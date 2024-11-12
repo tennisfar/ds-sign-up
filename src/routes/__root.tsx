@@ -5,6 +5,7 @@ import StepContextProvider from '../assets/Contexts/StepContext.tsx';
 import ShowCancelContextProvider from '../assets/Contexts/ShowCancelContext.tsx';
 import { CancelSignUp } from '../Components/CancelSignUp/CancelSignUp.tsx';
 import { Jiras } from '../Components/Jiras/Jiras.tsx';
+import { Container } from '../Components/Container/Container.tsx';
 
 function RootComponent() {
   return (
@@ -12,8 +13,10 @@ function RootComponent() {
       <ShowCancelContextProvider>
         <StepContextProvider>
           <TopBar />
-          <Outlet />
-          <CancelSignUp />
+          <Container>
+            <Outlet />
+            <CancelSignUp />
+          </Container>
           <Jiras />
         </StepContextProvider>
       </ShowCancelContextProvider>

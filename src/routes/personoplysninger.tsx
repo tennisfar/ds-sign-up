@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Container } from '../Components/Container/Container.tsx';
 import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../assets/Contexts/StepContext.tsx';
@@ -17,21 +16,16 @@ function PersonalInfo() {
     setStep(2);
   }, [setStep]);
 
+  if (showCancel) {
+    return null;
+  }
+
   return (
     <>
-      {!showCancel && (
-        <>
-          <Container>
-            {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
-            <div className={'max-w-[392px]'}>
-              <Header
-                title={'Personoplysninger'}
-                text={'Vi skal vide lidt mere om dig for at kunne oprette en Blå Konto.'}
-              />
-            </div>
-          </Container>
-        </>
-      )}
+      {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
+      <div className={'max-w-[392px]'}>
+        <Header title={'Personoplysninger'} text={'Vi skal vide lidt mere om dig for at kunne oprette en Blå Konto.'} />
+      </div>
     </>
   );
 }

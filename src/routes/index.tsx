@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Header } from '../Components/Header/Header.tsx';
-import { Container } from '../Components/Container/Container.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 import { RichText } from '../Components/RichText/RichText.tsx';
 import { useEffect } from 'react';
@@ -38,21 +37,15 @@ function Index() {
 
   return (
     <>
-      {!showCancel && (
-        <>
-          <Container>
-            <Header title={data.title} isDlo={data.isDlo} text={data.text} />
+      <Header title={data.title} isDlo={data.isDlo} text={data.text} />
 
-            <div className={'mt-40 mb-20'}>
-              <CtaButton isPrimary={true} to={'kontaktinformationer'}>
-                {data.getStartedLabel}
-              </CtaButton>
-            </div>
+      <div className={'mt-40 mb-20'}>
+        <CtaButton isPrimary={true} to={'kontaktinformationer'}>
+          {data.getStartedLabel}
+        </CtaButton>
+      </div>
 
-            <RichText>{data.logInLabel}</RichText>
-          </Container>
-        </>
-      )}
+      <RichText>{data.logInLabel}</RichText>
     </>
   );
 }
