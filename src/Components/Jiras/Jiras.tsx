@@ -30,6 +30,11 @@ export const Jiras = () => {
           IU-20308: Personoplysninger
         </Link>
       </li>
+      <li>
+        <Link to="/opret-login" className="[&.active]:font-bold">
+          IU-20309: Opret login
+        </Link>
+      </li>
     </ul>
   );
 };

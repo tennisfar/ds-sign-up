@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PersonoplysningerImport } from './routes/personoplysninger'
+import { Route as OpretLoginImport } from './routes/opret-login'
 import { Route as KontaktinformationerImport } from './routes/kontaktinformationer'
 import { Route as IndexImport } from './routes/index'
 
@@ -20,6 +21,12 @@ import { Route as IndexImport } from './routes/index'
 const PersonoplysningerRoute = PersonoplysningerImport.update({
   id: '/personoplysninger',
   path: '/personoplysninger',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const OpretLoginRoute = OpretLoginImport.update({
+  id: '/opret-login',
+  path: '/opret-login',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktinformationerImport
       parentRoute: typeof rootRoute
     }
+    '/opret-login': {
+      id: '/opret-login'
+      path: '/opret-login'
+      fullPath: '/opret-login'
+      preLoaderRoute: typeof OpretLoginImport
+      parentRoute: typeof rootRoute
+    }
     '/personoplysninger': {
       id: '/personoplysninger'
       path: '/personoplysninger'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
 }
 
@@ -81,27 +97,39 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/kontaktinformationer': typeof KontaktinformationerRoute
+  '/opret-login': typeof OpretLoginRoute
   '/personoplysninger': typeof PersonoplysningerRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontaktinformationer' | '/personoplysninger'
+  fullPaths:
+    | '/'
+    | '/kontaktinformationer'
+    | '/opret-login'
+    | '/personoplysninger'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontaktinformationer' | '/personoplysninger'
-  id: '__root__' | '/' | '/kontaktinformationer' | '/personoplysninger'
+  to: '/' | '/kontaktinformationer' | '/opret-login' | '/personoplysninger'
+  id:
+    | '__root__'
+    | '/'
+    | '/kontaktinformationer'
+    | '/opret-login'
+    | '/personoplysninger'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KontaktinformationerRoute: typeof KontaktinformationerRoute
+  OpretLoginRoute: typeof OpretLoginRoute
   PersonoplysningerRoute: typeof PersonoplysningerRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KontaktinformationerRoute: KontaktinformationerRoute,
+  OpretLoginRoute: OpretLoginRoute,
   PersonoplysningerRoute: PersonoplysningerRoute,
 }
 
@@ -117,6 +145,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/kontaktinformationer",
+        "/opret-login",
         "/personoplysninger"
       ]
     },
@@ -125,6 +154,9 @@ export const routeTree = rootRoute
     },
     "/kontaktinformationer": {
       "filePath": "kontaktinformationer.tsx"
+    },
+    "/opret-login": {
+      "filePath": "opret-login.tsx"
     },
     "/personoplysninger": {
       "filePath": "personoplysninger.tsx"
