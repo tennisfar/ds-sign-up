@@ -5,10 +5,11 @@ import { Title } from '../Title/Title.tsx';
 type HeaderProps = {
   isDlo?: boolean;
   title: string;
-  text?: any;
+  text?: string;
+  alignText?: 'left' | 'center';
 };
 
-export const Header = ({ title, isDlo, text }: HeaderProps) => {
+export const Header = ({ title, isDlo, text, alignText = 'center' }: HeaderProps) => {
   return (
     <div className={'flex flex-col gap-8 max-w-[40rem]'}>
       <div className={'flex flex-col gap-24'}>
@@ -16,7 +17,7 @@ export const Header = ({ title, isDlo, text }: HeaderProps) => {
         <Title>{title}</Title>
       </div>
 
-      <div className={'text-center'}>
+      <div className={`text-${alignText}`}>
         <RichText>{text}</RichText>
       </div>
     </div>

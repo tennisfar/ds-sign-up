@@ -40,6 +40,11 @@ export const Jiras = () => {
           IU-20310: Indbetalingsgrænse
         </Link>
       </li>
+      <li>
+        <Link to="/spil-med-omtanke" className="[&.active]:font-bold">
+          IU-20311: Spil med omtanke
+        </Link>
+      </li>
     </ul>
   );
 };
