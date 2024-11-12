@@ -106,11 +106,6 @@ const sizes = {
   1152: '115.2rem',
   1280: '128rem',
   1440: '144rem',
-  auto: 'auto',
-  // Added for casino
-  '1/2': '50%',
-  '1/3': '33.333333%',
-  '2/3': '66.666666%',
 };
 
 export default {
@@ -123,22 +118,9 @@ export default {
       size: sizes,
       spacing: sizes,
       fontSize: {
+        12: ['1.2rem', { lineHeight: '1.5' }],
         16: ['1.6rem', { lineHeight: '1.375' }],
         32: ['3.2rem', { lineHeight: 'normal' }],
-        // 12: ['1.2rem', { lineHeight: '1.6rem' }],
-        // 14: ['1.4rem', { lineHeight: '2rem' }],
-        // 18: ['1.8rem', { lineHeight: '2.8rem' }],
-        // 20: ['2rem', { lineHeight: '2.8rem' }],
-        // 24: ['2.4rem', { lineHeight: '3.2rem' }],
-        // 30: ['3rem', { lineHeight: '3.6rem' }],
-        // 36: ['3.6rem', { lineHeight: '4rem' }],
-        // 40: ['4rem', { lineHeight: '4.4rem' }],
-        // 48: ['4.8rem', { lineHeight: '1' }],
-        // 60: ['6rem', { lineHeight: '1' }],
-        // 72: ['7.2rem', { lineHeight: '1' }],
-        // 84: ['8.4rem', { lineHeight: '1' }],
-        // 96: ['9.6rem', { lineHeight: '1' }],
-        // 128: ['12.8rem', { lineHeight: '1' }],
       },
     },
   },

@@ -15,7 +15,7 @@ function PlayResponsibly() {
   const { setStep } = useStepContext();
   const { showCancel } = useShowCancelContext();
   const { data } = useDataContext();
-  const { title, text, ctaLabelAccept, ctaLabelDecline } = data.markedsfoering;
+  const { title, text, ctaLabelAccept, ctaLabelDecline, conditions } = data.markedsfoering;
 
   useEffect(() => {
     setStep(6);
@@ -39,6 +39,8 @@ function PlayResponsibly() {
           {ctaLabelDecline}
         </CtaButton>
       </div>
+
+      <Text size={'small'}>{conditions}</Text>
     </>
   );
 }
