@@ -1,9 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
+import { useDataContext } from '../Contexts/DataContext.tsx';
+import { Title } from '../Components/Title/Title.tsx';
+import { RichText } from '../Components/RichText/RichText.tsx';
 
 export const Route = createFileRoute('/indbetalingsgraense')({
   component: CreateLogin,
@@ -12,6 +14,8 @@ export const Route = createFileRoute('/indbetalingsgraense')({
 function CreateLogin() {
   const { setStep } = useStepContext();
   const { showCancel } = useShowCancelContext();
+  const { data } = useDataContext();
+  const { title, text, ctaLabel } = data.indbetalingsgraense;
 
   useEffect(() => {
     setStep(4);
@@ -23,16 +27,12 @@ function CreateLogin() {
 
   return (
     <>
-      <Header
-        title={'Sæt din indbetalingsgrænse'}
-        text={
-          'Med en indbetalingsgrænse sikrer du, at du ikke indbetaler flere penge til din spilkonto, end du på forhånd har besluttet dig for.'
-        }
-      />
+      <Title>{title}</Title>
+      <RichText>{text}</RichText>
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'/spil-med-omtanke'}>
-          Sæt grænse
+          {ctaLabel}
         </CtaButton>
       </div>
     </>

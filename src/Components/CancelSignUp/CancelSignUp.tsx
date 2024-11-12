@@ -1,9 +1,12 @@
-import { Header } from '../Header/Header.tsx';
 import { CtaButton } from '../Cta/CtaButton.tsx';
 import { useShowCancelContext } from '../../Contexts/ShowCancelContext.tsx';
+import { Title } from '../Title/Title.tsx';
+import { useDataContext } from '../../Contexts/DataContext.tsx';
 
 export const CancelSignUp = () => {
   const { showCancel, setShowCancel } = useShowCancelContext();
+  const { data } = useDataContext();
+  const { title, ctaLabelConfirm, ctaLabelRegret } = data.cancelSignUp;
 
   if (!showCancel) {
     return null;
@@ -15,13 +18,14 @@ export const CancelSignUp = () => {
 
   return (
     <>
-      <Header title={'Vil du annullere oprettelsen af din Blå Konto?'} />
+      <Title>{title}</Title>
 
       <div className={'mt-30 flex flex-col gap-12'}>
         <CtaButton isPrimary={true} fn={handleCancel}>
-          Nej, opret ny konto
+          {ctaLabelRegret}
         </CtaButton>
-        <CtaButton href={'/'}>Ja, annuller og luk</CtaButton>
+
+        <CtaButton href={'/'}>{ctaLabelConfirm}</CtaButton>
       </div>
     </>
   );

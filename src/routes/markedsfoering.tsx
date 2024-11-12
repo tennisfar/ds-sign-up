@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
+import { useDataContext } from '../Contexts/DataContext.tsx';
+import { Title } from '../Components/Title/Title.tsx';
+import { RichText } from '../Components/RichText/RichText.tsx';
 
 export const Route = createFileRoute('/markedsfoering')({
   component: PlayResponsibly,
@@ -11,6 +13,8 @@ export const Route = createFileRoute('/markedsfoering')({
 function PlayResponsibly() {
   const { setStep } = useStepContext();
   const { showCancel } = useShowCancelContext();
+  const { data } = useDataContext();
+  const { title, text } = data.markedsfoering;
 
   useEffect(() => {
     setStep(6);
@@ -22,11 +26,8 @@ function PlayResponsibly() {
 
   return (
     <>
-      <Header
-        title={'Vil du høre mere om vores gode tilbud, kampagner og nyheder?'}
-        text={'Det kan f.eks. være når vi kører indbetalingsbonusser, gratis chancer eller nye spillerautomater.'}
-        wide={true}
-      />
+      <Title wide={true}>{title}</Title>
+      <RichText wide={true}>{text}</RichText>
     </>
   );
 }

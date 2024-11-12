@@ -6,20 +6,25 @@ import { Jiras } from '../Components/Jiras/Jiras.tsx';
 import { Container } from '../Components/Container/Container.tsx';
 import ShowCancelContextProvider from '../Contexts/ShowCancelContext.tsx';
 import StepContextProvider from '../Contexts/StepContext.tsx';
+import DataContextProvider from '../Contexts/DataContext.tsx';
+import { AccountLogo } from '../Components/AccountLogo/AccountLogo.tsx';
 
 function RootComponent() {
   return (
     <>
-      <ShowCancelContextProvider>
-        <StepContextProvider>
-          <TopBar />
-          <Container>
-            <Outlet />
-            <CancelSignUp />
-          </Container>
-          <Jiras />
-        </StepContextProvider>
-      </ShowCancelContextProvider>
+      <DataContextProvider>
+        <ShowCancelContextProvider>
+          <StepContextProvider>
+            <TopBar />
+            <Container>
+              <AccountLogo />
+              <Outlet />
+              <CancelSignUp />
+            </Container>
+            <Jiras />
+          </StepContextProvider>
+        </ShowCancelContextProvider>
+      </DataContextProvider>
 
       <TanStackRouterDevtools />
     </>
