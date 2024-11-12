@@ -1,17 +1,21 @@
-import { TopBar } from '../TopBar/TopBar.tsx';
 import { Container } from '../Container/Container.tsx';
 import { Header } from '../Header/Header.tsx';
 import { CtaButton } from '../Cta/CtaButton.tsx';
+import { useShowCancelContext } from '../../assets/Contexts/ShowCancelContext.tsx';
 
-type CancelSignUpProps = {
-  handleCancel?: any;
-};
+export const CancelSignUp = () => {
+  const { showCancel, setShowCancel } = useShowCancelContext();
 
-export const CancelSignUp = ({ handleCancel }: CancelSignUpProps) => {
+  if (!showCancel) {
+    return null;
+  }
+
+  const handleCancel = () => {
+    setShowCancel(false);
+  };
+
   return (
     <>
-      <TopBar hideCancel={true} handleCancel={handleCancel} />
-
       <Container>
         <Header title={'Vil du annullere oprettelsen af din Blå Konto?'} />
 

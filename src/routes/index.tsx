@@ -3,9 +3,9 @@ import { Header } from '../Components/Header/Header.tsx';
 import { Container } from '../Components/Container/Container.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 import { RichText } from '../Components/RichText/RichText.tsx';
-import { useEffect, useState } from 'react';
-import { CancelSignUp } from '../Components/CancelSignUp/CancelSignUp.tsx';
+import { useEffect } from 'react';
 import { useStepContext } from '../assets/Contexts/StepContext.tsx';
+import { useShowCancelContext } from '../assets/Contexts/ShowCancelContext.tsx';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -25,26 +25,21 @@ const data = {
 
 function Index() {
   const { setStep, setSteps } = useStepContext();
+  const { showCancel } = useShowCancelContext();
 
   useEffect(() => {
     setStep(null);
     setSteps(null);
   }, [setStep, setSteps]);
 
-  const [showCancel, setShowCancel] = useState(false);
-
-  const handleCancel = () => {
-    setShowCancel(!showCancel);
-  };
+  if (showCancel) {
+    return null;
+  }
 
   return (
     <>
-      {showCancel && <CancelSignUp handleCancel={handleCancel} />}
-
       {!showCancel && (
         <>
-          {/*<TopBar handleCancel={handleCancel} hideBack={true}/>*/}
-
           <Container>
             <Header title={data.title} isDlo={data.isDlo} text={data.text} />
 

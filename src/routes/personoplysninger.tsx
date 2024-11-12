@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Container } from '../Components/Container/Container.tsx';
 import { Header } from '../Components/Header/Header.tsx';
-import { useEffect, useState } from 'react';
-import { CancelSignUp } from '../Components/CancelSignUp/CancelSignUp.tsx';
+import { useEffect } from 'react';
 import { useStepContext } from '../assets/Contexts/StepContext.tsx';
+import { useShowCancelContext } from '../assets/Contexts/ShowCancelContext.tsx';
 
 export const Route = createFileRoute('/personoplysninger')({
   component: PersonalInfo,
@@ -11,27 +11,18 @@ export const Route = createFileRoute('/personoplysninger')({
 
 function PersonalInfo() {
   const { setStep } = useStepContext();
+  const { showCancel } = useShowCancelContext();
 
   useEffect(() => {
     setStep(2);
   }, [setStep]);
 
-  const [showCancel, setShowCancel] = useState(false);
-
-  const handleCancel = () => {
-    setShowCancel(!showCancel);
-  };
-
   return (
     <>
-      {showCancel && <CancelSignUp handleCancel={handleCancel} />}
-
       {!showCancel && (
         <>
-          {/*<TopBar handleCancel={handleCancel}/>*/}
-
           <Container>
-            {/* Max width 392px is only for developing, to make output look exactly like Figma. Should be removed. */}
+            {/* Max width is only for developing, to make output look exactly like Figma. Should be removed. */}
             <div className={'max-w-[392px]'}>
               <Header
                 title={'Personoplysninger'}
