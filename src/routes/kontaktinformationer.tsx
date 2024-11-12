@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Header } from '../Components/Header/Header.tsx';
 import { useEffect } from 'react';
-import { useStepContext } from '../assets/Contexts/StepContext.tsx';
-import { useShowCancelContext } from '../assets/Contexts/ShowCancelContext.tsx';
+import { useStepContext } from '../Contexts/StepContext.tsx';
+import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 
 export const Route = createFileRoute('/kontaktinformationer')({

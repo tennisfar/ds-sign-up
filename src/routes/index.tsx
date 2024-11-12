@@ -3,8 +3,8 @@ import { Header } from '../Components/Header/Header.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 import { RichText } from '../Components/RichText/RichText.tsx';
 import { useEffect } from 'react';
-import { useStepContext } from '../assets/Contexts/StepContext.tsx';
-import { useShowCancelContext } from '../assets/Contexts/ShowCancelContext.tsx';
+import { useStepContext } from '../Contexts/StepContext.tsx';
+import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 
 export const Route = createFileRoute('/')({
   component: Index,

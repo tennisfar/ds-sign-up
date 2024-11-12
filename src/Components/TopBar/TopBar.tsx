@@ -1,7 +1,7 @@
 import BackIcon from '../../assets/back.svg';
 import CloseIcon from '../../assets/close.svg';
-import { useStepContext } from '../../assets/Contexts/StepContext.tsx';
-import { useShowCancelContext } from '../../assets/Contexts/ShowCancelContext.tsx';
+import { useStepContext } from '../../Contexts/StepContext.tsx';
+import { useShowCancelContext } from '../../Contexts/ShowCancelContext.tsx';
 
 export const TopBar = () => {
   const { step, steps } = useStepContext();

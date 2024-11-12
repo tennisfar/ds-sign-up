@@ -1,6 +1,6 @@
 import { Header } from '../Header/Header.tsx';
 import { CtaButton } from '../Cta/CtaButton.tsx';
-import { useShowCancelContext } from '../../assets/Contexts/ShowCancelContext.tsx';
+import { useShowCancelContext } from '../../Contexts/ShowCancelContext.tsx';
 
 export const CancelSignUp = () => {
   const { showCancel, setShowCancel } = useShowCancelContext();
