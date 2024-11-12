@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
-import { RichText } from '../Components/RichText/RichText.tsx';
+import { Text } from '../Components/Text/Text.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
@@ -29,7 +29,7 @@ function Index() {
   return (
     <>
       <Title>{title}</Title>
-      <RichText>{text}</RichText>
+      <Text>{text}</Text>
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'kontaktinformationer'}>
@@ -37,7 +37,7 @@ function Index() {
         </CtaButton>
       </div>
 
-      <RichText>{logInLabel}</RichText>
+      <Text>{logInLabel}</Text>
     </>
   );
 }

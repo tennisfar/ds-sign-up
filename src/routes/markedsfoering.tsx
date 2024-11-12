@@ -4,7 +4,7 @@ import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { useDataContext } from '../Contexts/DataContext.tsx';
 import { Title } from '../Components/Title/Title.tsx';
-import { RichText } from '../Components/RichText/RichText.tsx';
+import { Text } from '../Components/Text/Text.tsx';
 
 export const Route = createFileRoute('/markedsfoering')({
   component: PlayResponsibly,
@@ -27,7 +27,7 @@ function PlayResponsibly() {
   return (
     <>
       <Title wide={true}>{title}</Title>
-      <RichText wide={true}>{text}</RichText>
+      <Text wide={true}>{text}</Text>
     </>
   );
 }

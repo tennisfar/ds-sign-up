@@ -5,7 +5,7 @@ import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { CtaButton } from '../Components/Cta/CtaButton.tsx';
 import { useDataContext } from '../Contexts/DataContext.tsx';
 import { Title } from '../Components/Title/Title.tsx';
-import { RichText } from '../Components/RichText/RichText.tsx';
+import { Text } from '../Components/Text/Text.tsx';
 
 export const Route = createFileRoute('/spil-med-omtanke')({
   component: PlayResponsibly,
@@ -28,7 +28,7 @@ function PlayResponsibly() {
   return (
     <>
       <Title>{title}</Title>
-      <RichText align={'left'}>{text}</RichText>
+      <Text align={'left'}>{text}</Text>
 
       <div className={'mt-40 mb-20'}>
         <CtaButton isPrimary={true} to={'/markedsfoering'}>
