@@ -61,7 +61,7 @@ export const sitecoreData = {
     ctaLabelAccept: 'Ja tak',
     ctaLabelDecline: 'Nej tak',
     conditions:
-      'Ved klik af “Ja tak” må Danske Licens Spil A/S og Danske Spil A/S sende mig nyheder om Danske Spil koncernen og markedsføring om onlinekasino og væddemål, events, kampagner og konkurrencer via e-mail og SMS. Du kan altid tilbagekalde dit samtykke. Læs mere om dette og om behandling af dine personoplysninger i Danske Spil koncernens privatlivspolitik – Læs mere.',
+      'Ved klik af <b>“Ja tak”</b> må <span tooltip="herunder følgende brands: Poker, Bingo, Danske Spil Casino, Spillehjørnet, Oddset, eOddset, Tips, og Dantoto">Danske Licens Spil A/S</span> og Danske Spil A/S sende mig nyheder om <span tooltip="Danske Spil...">Danske Spil koncernen</span> og markedsføring om onlinekasino og væddemål, events, kampagner og konkurrencer via e-mail og SMS. Du kan altid tilbagekalde dit samtykke. Læs mere om dette og om behandling af dine personoplysninger i Danske Spil koncernens privatlivspolitik – <a href="/">Læs mere</a>.',
   },
 
   bekraeft: {
