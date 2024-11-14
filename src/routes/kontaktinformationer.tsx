@@ -55,7 +55,7 @@ function ContactInfo() {
       },
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
+      // Do something with form data.
       console.error('value: ', value);
       void navigate({ to: '/personoplysninger' });
     },
@@ -66,8 +66,9 @@ function ContactInfo() {
   };
 
   const validateEmail = (email: string) => {
+    // Validation from https://emailregex.com/
     const isValid =
-      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
       );
 
