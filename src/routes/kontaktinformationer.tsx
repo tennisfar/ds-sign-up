@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
-import PhoneInput from 'react-phone-input-2';
+import { useEffect } from 'react';
+import PhoneInput, { CountryData } from 'react-phone-input-2';
 import { useStepContext } from '../Contexts/StepContext.tsx';
 import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { CtaSubmitForm } from '../Components/Cta/CtaButton.tsx';
@@ -9,7 +9,7 @@ import { Title } from '../Components/Title/Title.tsx';
 import { Text } from '../Components/Text/Text.tsx';
 import '../Components/FormElements/PhoneInput/style.less';
 import dk from '../Components/FormElements/PhoneInput/da.json';
-import { FieldApi, useForm } from '@tanstack/react-form';
+import { FieldApi, useForm, ValidationError } from '@tanstack/react-form';
 
 export const Route = createFileRoute('/kontaktinformationer')({
   component: ContactInfo,
@@ -20,7 +20,8 @@ function ContactInfo() {
   const { showCancel } = useShowCancelContext();
   const { data } = useDataContext();
   const { title, text, ctaLabel } = data.kontaktinformationer;
-  const [phone, setPhone] = useState('');
+  let phoneNumberData: { countryCode?: string; dialCode?: string; value?: string } = { value: '45' };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,17 +29,31 @@ function ContactInfo() {
     setSteps(7);
   }, [setStep, setSteps]);
 
+  const getErrorOutput = (errorMessage: ValidationError) => (
+    <div className={'text-12 text-[#FF0006] mt-4 -mb-2'}>{errorMessage}</div>
+  );
+
   interface FieldValue {
     email: string;
     phoneNumber: string;
   }
 
-  function FieldInfo({ field }: { field: FieldApi<FieldValue, 'email'> }) {
+  function EmailFieldInfo({ field }: { field: FieldApi<FieldValue, 'email'> }) {
     return (
       <>
-        {field.state.meta.isTouched && field.state.meta.errors.length ? (
-          <div className={'text-12 text-[#FF0006] mt-4 -mb-2'}>{field.state.meta.errors[0]}</div>
-        ) : null}
+        {field.state.meta.isTouched && field.state.meta.errors.length
+          ? getErrorOutput(field.state.meta.errors[0])
+          : null}
+      </>
+    );
+  }
+
+  function PhoneNumberFieldInfo({ field }: { field: FieldApi<FieldValue, 'phoneNumber'> }) {
+    return (
+      <>
+        {field.state.meta.isTouched && field.state.meta.errors.length
+          ? getErrorOutput(field.state.meta.errors[0])
+          : null}
       </>
     );
   }
@@ -60,10 +75,6 @@ function ContactInfo() {
       void navigate({ to: '/personoplysninger' });
     },
   });
-
-  const handlePhone = (phone: string) => {
-    setPhone(phone);
-  };
 
   const validateEmail = (email: string) => {
     // Validation from https://emailregex.com/
@@ -103,7 +114,7 @@ function ContactInfo() {
           children={(field) => (
             <div className={`relative`}>
               <input
-                className={`relative h-52 w-full text-16 border-solid border-[0.1rem] border-[#838B9B] rounded-[0.6rem] pl-14 ${field.state.value !== '' ? 'pt-14 after:absolute after:z-[1] after:pointer-events-none after:content-["E-mail"]' : ''}`}
+                className={`relative h-52 w-full text-16 border-solid border-[0.1rem] border-[#838B9B] rounded-[0.6rem] pl-14 ${field.state.value !== '' ? 'pt-14' : ''}`}
                 placeholder={'E-mail'}
                 value={field.state.value}
                 onBlur={field.handleBlur}
@@ -115,23 +126,71 @@ function ContactInfo() {
               >
                 E-mail
               </div>
-              <FieldInfo field={field} />
+              <EmailFieldInfo field={field} />
             </div>
           )}
         />
 
-        <div className={''}>
-          <PhoneInput
-            placeholder={'Telefonnummer'}
-            localization={dk}
-            country={'dk'}
-            enableTerritories={true}
-            preferredCountries={['dk', 'gl', 'fo']}
-            priority={{ dk: 0, gl: 1, fo: 2 }}
-            value={phone}
-            onChange={handlePhone}
-          />
-        </div>
+        <form.Field
+          name="phoneNumber"
+          validators={{
+            onChange: ({ value }) => {
+              const { countryCode, dialCode = '' } = phoneNumberData;
+              const phoneNumberDigits = value.length - dialCode.length;
+
+              if (!value) {
+                return 'Indtast venligst telefonnummer';
+              }
+
+              switch (countryCode) {
+                case 'dk':
+                  if (phoneNumberDigits !== 8) {
+                    return 'Indtast venligst gyldig telefonnummer';
+                  }
+                  break;
+                case 'gl':
+                  if (phoneNumberDigits !== 6) {
+                    return 'Indtast venligst gyldig telefonnummer';
+                  }
+                  break;
+                case 'fo':
+                  if (phoneNumberDigits !== 6) {
+                    return 'Indtast venligst gyldig telefonnummer';
+                  }
+                  break;
+                default:
+                  return null;
+              }
+            },
+          }}
+          children={(field) => (
+            <div className={`relative [&>*:first-child:!bg-[red] has-[.visible]:[&>*]!bg-[green]`}>
+              <PhoneInput
+                inputClass={`${phoneNumberData.value !== '' ? 'pt-14' : ''}`}
+                countryCodeEditable={true}
+                placeholder={'Telefonnummer'}
+                localization={dk}
+                country={'dk'}
+                enableTerritories={true}
+                preferredCountries={['dk', 'gl', 'fo']}
+                masks={{ dk: '.. .. .. ..', gl: '... ...', fo: '... ...' }}
+                priority={{ dk: 0, gl: 1, fo: 2 }}
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChange={(value, data: CountryData) => {
+                  phoneNumberData = { ...data, value };
+                  field.handleChange(value);
+                }}
+              />
+              <div
+                className={`${phoneNumberData.value !== '' ? 'visible' : 'invisible'} absolute text-12 text-[#838B9B] top-6 left-[7.4rem]`}
+              >
+                Telefonnummer
+              </div>
+              <PhoneNumberFieldInfo field={field} />
+            </div>
+          )}
+        />
 
         <form.Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
