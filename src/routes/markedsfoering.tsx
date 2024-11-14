@@ -5,7 +5,7 @@ import { useShowCancelContext } from '../Contexts/ShowCancelContext.tsx';
 import { useDataContext } from '../Contexts/DataContext.tsx';
 import { Title } from '../Components/Title/Title.tsx';
 import { Text } from '../Components/Text/Text.tsx';
-import { CtaButton } from '../Components/Cta/CtaButton.tsx';
+import { CtaLink } from '../Components/Cta/CtaButton.tsx';
 
 export const Route = createFileRoute('/markedsfoering')({
   component: PlayResponsibly,
@@ -31,13 +31,9 @@ function PlayResponsibly() {
       <Text wide={true}>{text}</Text>
 
       <div className={'mt-40 mb-20 flex flex-col gap-12'}>
-        <CtaButton isPrimary={true} to={'/bekraeft'}>
-          {ctaLabelAccept}
-        </CtaButton>
+        <CtaLink to={'/bekraeft'}>{ctaLabelAccept}</CtaLink>
 
-        <CtaButton isPrimary={true} to={'/bekraeft'}>
-          {ctaLabelDecline}
-        </CtaButton>
+        <CtaLink to={'/bekraeft'}>{ctaLabelDecline}</CtaLink>
       </div>
 
       <Text size={'small'}>{conditions}</Text>

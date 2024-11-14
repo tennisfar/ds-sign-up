@@ -1,38 +1,53 @@
 import { Link } from '@tanstack/react-router';
 
-type CtaButtonProps = {
-  isPrimary?: boolean;
+type CtaProps = {
+  disabled?: boolean;
+  layout?: 'primary' | 'secondary';
   to?: string;
   href?: string;
   children?: string;
   fn?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
-const cssBasePrimary =
-  'min-w-[24rem] h-56 flex justify-center items-center px-20 rounded-full bg-[#feb700] hover:bg-[#eaa800]';
-const cssBaseSecondary =
-  'min-w-[24rem] h-56 flex justify-center items-center px-20 rounded-full bg-[white] border border-[#003a2766] hover:bg-[rgba(0,58,39,0.40);]';
+const styleBase =
+  'min-w-[24rem] h-56 flex justify-center items-center px-20 rounded-full text-[black] text-[1.2rem] uppercase font-extrabold tracking-[0.1rem]';
+const stylePrimary = 'bg-[#feb700] hover:bg-[#eaa800]';
+const styleSecondary = 'bg-[white] border border-[#003a2766] hover:bg-[rgba(0,58,39,0.40);]';
+const styleDisabled = 'text-[rgba(0,0,0,0.40)] bg-[rgba(34,34,34,0.30)] pointer-events-none';
 
-export const CtaButton = ({ isPrimary, to, fn, href, children }: CtaButtonProps) => {
+const style = ({ layout, disabled }: CtaProps) => {
+  return `${styleBase} ${layout === 'primary' ? stylePrimary : layout === 'secondary' ? styleSecondary : ''} ${disabled ? styleDisabled : ''}`;
+};
+
+export const CtaHref = ({ children, disabled, layout = 'primary', href }: CtaProps) => {
   return (
-    <>
-      {to && (
-        <Link to={to} className={`${isPrimary ? cssBasePrimary : cssBaseSecondary}`}>
-          <span className={'text-[black] text-[1.2rem] uppercase font-extrabold tracking-[0.1rem]'}>{children}</span>
-        </Link>
-      )}
+    <a href={href} className={style({ layout, disabled })}>
+      {children}
+    </a>
+  );
+};
 
-      {!to && fn && (
-        <button onClick={fn} className={`${isPrimary ? cssBasePrimary : cssBaseSecondary}`}>
-          <span className={'text-[black] text-[1.2rem] uppercase font-extrabold tracking-[0.1rem]'}>{children}</span>
-        </button>
-      )}
+export const CtaFn = ({ children, disabled, layout = 'primary', fn }: CtaProps) => {
+  return (
+    <button onClick={fn} className={style({ layout, disabled })}>
+      {children}
+    </button>
+  );
+};
 
-      {!to && !fn && href && (
-        <a href={href} className={`${isPrimary ? cssBasePrimary : cssBaseSecondary}`}>
-          <span className={'text-[black] text-[1.2rem] uppercase font-extrabold tracking-[0.1rem]'}>{children}</span>
-        </a>
-      )}
-    </>
+export const CtaLink = ({ children, disabled, layout = 'primary', to }: CtaProps) => {
+  return (
+    <Link to={to} disabled={disabled} className={style({ layout, disabled })}>
+      {children}
+    </Link>
+  );
+};
+
+export const CtaSubmitForm = ({ children, disabled, layout = 'primary' }: CtaProps) => {
+  return (
+    <button type={'submit'} disabled={disabled} className={style({ layout, disabled })}>
+      {children}
+    </button>
   );
 };

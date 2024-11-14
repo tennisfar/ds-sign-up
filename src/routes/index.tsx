@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { CtaButton } from '../Components/Cta/CtaButton.tsx';
+import { CtaLink } from '../Components/Cta/CtaButton.tsx';
 import { Text } from '../Components/Text/Text.tsx';
 import { useEffect } from 'react';
 import { useStepContext } from '../Contexts/StepContext.tsx';
@@ -32,9 +32,7 @@ function Index() {
       <Text>{text}</Text>
 
       <div className={'mt-40 mb-20'}>
-        <CtaButton isPrimary={true} to={'/kontaktinformationer'}>
-          {getStartedLabel}
-        </CtaButton>
+        <CtaLink to={'/kontaktinformationer'}>{getStartedLabel}</CtaLink>
       </div>
 
       <Text>{logInLabel}</Text>
