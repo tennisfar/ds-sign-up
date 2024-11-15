@@ -20,8 +20,8 @@ function ContactInfo() {
   const { showCancel } = useShowCancelContext();
   const { data } = useDataContext();
   const { title, text, ctaLabel } = data.kontaktinformationer;
-  let phoneNumberData: { countryCode?: string; dialCode?: string; value?: string } = { value: '45' };
-
+  let phoneNumberData: { countryCode?: string; dialCode?: string; value?: string } = {};
+  const countryCodeInitValue = '45';
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +36,7 @@ function ContactInfo() {
   interface FieldValue {
     email: string;
     phoneNumber: string;
+    values: { email: string; phoneNumber: string };
   }
 
   function EmailFieldInfo({ field }: { field: FieldApi<FieldValue, 'email'> }) {
@@ -61,13 +62,8 @@ function ContactInfo() {
   const form = useForm({
     defaultValues: {
       email: '',
-      phoneNumber: '',
-    },
-    validators: {
-      onMount: ({ value }) => {
-        // Used to validate the form on mount, disabling the submit button.
-        return validateEmail(value.email);
-      },
+      phoneNumber: countryCodeInitValue,
+      values: { email: '', phoneNumber: '' },
     },
     onSubmit: async ({ value }) => {
       // Do something with form data.
@@ -79,7 +75,7 @@ function ContactInfo() {
   const validateEmail = (email: string) => {
     // Validation from https://emailregex.com/
     const isValid =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
       );
 
@@ -120,6 +116,7 @@ function ContactInfo() {
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
                 type={'email'}
+                required
               />
               <div
                 className={`${field.state.value !== '' ? 'visible' : 'invisible'} absolute text-12 text-[#838B9B] top-6 left-16`}
@@ -193,12 +190,22 @@ function ContactInfo() {
         />
 
         <form.Subscribe
-          selector={(state) => [state.canSubmit, state.isSubmitting]}
-          children={([canSubmit, isSubmitting]) => (
-            <div className={'mt-24 mb-20 mx-auto'}>
-              <CtaSubmitForm disabled={!canSubmit || isSubmitting}>{ctaLabel}</CtaSubmitForm>
-            </div>
-          )}
+          selector={(state) => [state.canSubmit, state.isSubmitting, state.values]}
+          children={([canSubmit, isSubmitting, values]) => {
+            const isDisabled = !!(
+              !canSubmit ||
+              isSubmitting ||
+              typeof values !== 'object' ||
+              values.email.length === 0 ||
+              values.phoneNumber.length === countryCodeInitValue.length
+            );
+
+            return (
+              <div className={'mt-24 mb-20 mx-auto'}>
+                <CtaSubmitForm disabled={isDisabled}>{ctaLabel}</CtaSubmitForm>
+              </div>
+            );
+          }}
         />
       </form>
     </>
